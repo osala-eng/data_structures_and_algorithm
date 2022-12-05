@@ -1,25 +1,24 @@
 #include <iostream>
 #include <set>
 #include <cstring>
+#include <map>
 using namespace std;
 
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        set<char> _s;
-        string replace(0, s.length(), ' ');
-        for (int i = 0; i < t.length(); i++){
-            if(_s.count(t[i]) > 0)
-                continue;
-            char at_s = s[i];
-            for(int j = 0; j < s.length(); j++){
-                if(s[j] == at_s)
-                     replace[j] = t[i];
-            }
-            _s.insert(t[i]);
+        map<char, char> s_t, t_s;
+
+        for(int i = 0; i < s.length(); i++){
+            if(s_t.count(s[i]) > 0 && s_t[s[i]] != t[i])
+                return false;
+            if(t_s.count(t[i]) > 0 && t_s[t[i]] != s[i])
+                return false;
+            t_s[t[i]] = s[i];
+            s_t[s[i]] = t[i];
         }
-        cout << replace << endl << t << endl;
-        return (replace == t);
+
+        return true;
     }
 };
 
