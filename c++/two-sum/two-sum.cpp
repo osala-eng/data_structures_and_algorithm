@@ -7,10 +7,10 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         vector<int> keys;
-        for(int i = 0; nums[i]; i++){
-            for (int j = i + 1; nums[j]; j++){
-                if (nums[i] + nums[j] == target){
-                    keys.insert(keys.begin(), {i, j});
+        for(int i = 0; i < nums.size(); i++){
+            for (int j = i + 1; j < nums.size(); j++){
+                if (nums.at(i) + nums.at(j) == target){
+                    keys = {i, j};
                 }
             }
         }
