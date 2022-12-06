@@ -1,23 +1,21 @@
 #include <iostream>
-#include <set>
 #include <cstring>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        map<char, char> s_t, t_s;
+        unordered_map<char, char> s_t, t_s;
+        int len = s.length();
 
-        for(int i = 0; i < s.length(); i++){
-            if(s_t.count(s[i]) > 0 && s_t[s[i]] != t[i])
-                return false;
-            if(t_s.count(t[i]) > 0 && t_s[t[i]] != s[i])
+        for(int i = 0; i < len; i++){
+            if( (s_t.count(s[i]) > 0 && s_t[s[i]] != t[i]) ||
+                (t_s.count(t[i]) > 0 && t_s[t[i]] != s[i]) )
                 return false;
             t_s[t[i]] = s[i];
             s_t[s[i]] = t[i];
         }
-
         return true;
     }
 };
